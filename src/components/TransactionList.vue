@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 const props = defineProps(['transactions']);
 const amountClass = (transaction) => {
     return transaction.type === 'income' ? 'text-success' : 'text-danger';
