@@ -1,12 +1,16 @@
 <script setup>
 import { ref } from 'vue';
-const props = defineProps(['transactions']);
-const amountClass = (transaction) => {
-    return transaction.type === 'income' ? 'text-success' : 'text-danger';
-}
-const typeClass = (transaction) => {
-    return transaction.type === 'income' ? 'text-success' : 'text-danger';
-}
+    const props = defineProps(['transactions']);
+    const amountClass = (transaction) => {
+        return transaction.type === 'income' ? 'text-success' : 'text-danger';
+    }
+    const typeClass = (transaction) => {
+        return transaction.type === 'income' ? 'text-success' : 'text-danger';
+    }
+    const deleteTransaction = (index) => {
+        transactions.value.splice(index, 1);
+      localStorage.setItem('transactions', JSON.stringify(transactions.value));
+    };
 </script>
 
 <template>
@@ -25,7 +29,7 @@ const typeClass = (transaction) => {
             <td>{{ transaction.title }}</td>
             <td :class="amountClass(transaction)">${{ transaction.amount }}</td>
             <td :class="typeClass(transaction)">{{ transaction.type }}</td>
-            <td><button @click="$emit('delete-transaction', index)" class="btn btn-danger">Delete</button></td>
+            <td><button @click="$emit('deleteTransaction', index)" class="btn btn-danger">Delete</button></td>
             </tr>
         </tbody>
         </table>

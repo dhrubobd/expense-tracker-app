@@ -3,8 +3,8 @@ import { reactive } from 'vue';
 const props = defineProps(['transactions']);
 const transaction = {
   title: '',
-  amount: 1,
-  type: 'INCOME'
+  amount: '',
+  type: ''
 };
 const addTransaction = (transaction) => {
     //alert(transaction.title);
