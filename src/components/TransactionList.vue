@@ -1,17 +1,18 @@
 <script setup>
-import { ref } from 'vue';
+import { ref,computed } from 'vue';
     const props = defineProps(['transactions']);
     const amountClass = (transaction) => {
-        return transaction.type === 'income' ? 'text-success' : 'text-danger';
+        return transaction.type === 'INCOME' ? 'text-success' : 'text-danger';
     }
     const typeClass = (transaction) => {
-        return transaction.type === 'income' ? 'text-success' : 'text-danger';
+        return transaction.type === 'INCOME' ? 'text-success' : 'text-danger';
     }
+
 </script>
 
 <template>
-    <div>
-        <table class="table table-bordered mt-3" v-if="props.transactions.length">
+    <div v-if="props.transactions.length">
+        <table class="table table-bordered mt-3" >
         <thead>
             <tr>
             <th>Title</th>
@@ -29,8 +30,8 @@ import { ref } from 'vue';
             </tr>
         </tbody>
         </table>
-        <p v-else  class="text-center">No transactions recorded yet.</p>
      </div>
+     <p v-else  class="text-center text-info">No transactions recorded yet.</p>
 </template>
 
 <style scoped>

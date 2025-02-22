@@ -15,8 +15,6 @@ if (storedTransactions) {
  
 });
 
-
-
 const deleteTransaction = (index) => {
     transactions.value.splice(index, 1);
     localStorage.setItem('transactions', JSON.stringify(transactions.value));
@@ -26,7 +24,6 @@ const deleteTransaction = (index) => {
 <template>
   <div>
     <h1>Simple Expense Tracker Apps</h1>
-    {{ transactions }}
   </div>
   <div>
     <AddTransaction :transactions="transactions" />

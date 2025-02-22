@@ -1,13 +1,15 @@
 <script setup>
 import { reactive } from 'vue';
+
 const props = defineProps(['transactions']);
+
 const transaction = {
   title: '',
   amount: '',
-  type: ''
+  type: 'INCOME'
 };
+
 const addTransaction = () => {
-    alert(JSON.stringify(transaction));
 
     props.transactions.push({
         title: transaction.title,
@@ -38,7 +40,7 @@ const addTransaction = () => {
       </select>
     </div>
     <div class="mb-3 col-md-3">
-        <label>&nbsp;</label>
+        <br>
         <button class="btn btn-primary" @click="addTransaction">Add</button>
     </div>
   </div>
