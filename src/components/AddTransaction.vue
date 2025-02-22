@@ -6,11 +6,18 @@ const transaction = {
   amount: '',
   type: ''
 };
-const addTransaction = (transaction) => {
-    //alert(transaction.title);
-    props.transactions.push(transaction);
+const addTransaction = () => {
+    alert(JSON.stringify(transaction));
+
+    props.transactions.push({
+        title: transaction.title,
+        amount: transaction.amount,
+        type: transaction.type
+    });
+    
     localStorage.setItem('transactions', JSON.stringify(props.transactions));
-    };
+    
+};
 </script>
 
 <template>
@@ -32,7 +39,7 @@ const addTransaction = (transaction) => {
     </div>
     <div class="mb-3 col-md-3">
         <label>&nbsp;</label>
-        <button class="btn btn-primary" @click="addTransaction(transaction)">Add</button>
+        <button class="btn btn-primary" @click="addTransaction">Add</button>
     </div>
   </div>
 </template>

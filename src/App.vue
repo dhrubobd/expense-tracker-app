@@ -1,17 +1,26 @@
 <script setup>
-import { ref,computed,reactive } from 'vue';
+import { ref,computed,reactive,onMounted } from 'vue';
 import TransactionList from './components/TransactionList.vue';
 import AddTransaction from './components/AddTransaction.vue';
-const transactions=ref([]);
+
+const transactions= ref([]);
+
+
+onMounted(() => {
 const storedTransactions = localStorage.getItem('transactions');
+
 if (storedTransactions) {
         transactions.value = JSON.parse(storedTransactions);
   }
+ 
+});
+
+
 
 const deleteTransaction = (index) => {
-      transactions.value.splice(index, 1);
-      localStorage.setItem('transactions', JSON.stringify(transactions.value));
-    };
+    transactions.value.splice(index, 1);
+    localStorage.setItem('transactions', JSON.stringify(transactions.value));
+};
 </script>
 
 <template>
@@ -20,7 +29,7 @@ const deleteTransaction = (index) => {
     {{ transactions }}
   </div>
   <div>
-    <AddTransaction :transactions="transactions"/>
+    <AddTransaction :transactions="transactions" />
   </div>
   <div>
     <TransactionList :transactions="transactions" @delete-transaction="deleteTransaction"/>

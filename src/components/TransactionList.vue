@@ -7,15 +7,11 @@ import { ref } from 'vue';
     const typeClass = (transaction) => {
         return transaction.type === 'income' ? 'text-success' : 'text-danger';
     }
-    const deleteTransaction = (index) => {
-        transactions.value.splice(index, 1);
-      localStorage.setItem('transactions', JSON.stringify(transactions.value));
-    };
 </script>
 
 <template>
     <div>
-        <table class="table table-bordered mt-3" v-if="transactions.length">
+        <table class="table table-bordered mt-3" v-if="props.transactions.length">
         <thead>
             <tr>
             <th>Title</th>
@@ -25,11 +21,11 @@ import { ref } from 'vue';
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(transaction, index) in transactions" :key="index">
+            <tr v-for="(transaction, index) in props.transactions" :key="index">
             <td>{{ transaction.title }}</td>
             <td :class="amountClass(transaction)">${{ transaction.amount }}</td>
             <td :class="typeClass(transaction)">{{ transaction.type }}</td>
-            <td><button @click="$emit('deleteTransaction', index)" class="btn btn-danger">Delete</button></td>
+            <td><button @click="$emit('deleteTransaction', index)"  class="btn btn-danger">Delete</button></td>
             </tr>
         </tbody>
         </table>
